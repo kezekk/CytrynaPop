@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CytrynaPop 🍋</title>
+  <style>
+    body {
+      background: #fff8d6;
+      font-family: Comic Sans MS, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #f7c400;
+      text-shadow: 2px 2px 3px #444;
+    }
+
+    img {
+      width: 300px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s ease;
+    }
+
+    img:active {
+      transform: scale(0.95);
+    }
+
+    .counter {
+      margin-top: 20px;
+      font-size: 2em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍋 CytrynaPop! 🍋</h1>
+
+  <!-- Obrazek cytryny -->
+  <img id="cytryna" src="cytryna_open.png" alt="Cytryna się uśmiecha">
+
+  <!-- Licznik kliknięć -->
+  <div class="counter" id="licznik">0</div>
+
+  <!-- Dźwięk kliknięcia -->
+  <audio id="sound" src="pop.mp3" preload="auto"></audio>
+
+  <script>
+    const cytryna = document.getElementById("cytryna");
+    const licznik = document.getElementById("licznik");
+    const sound = document.getElementById("sound");
+
+    let klikniecia = 0;
+    let otwarta = true;
+
+    cytryna.addEventListener("click", () => {
+      klikniecia++;
+      licznik.textContent = klikniecia;
+
+      // Zmiana obrazka
+      cytryna.src = otwarta ? "cytryna_closed.png" : "cytryna_open.png";
+      otwarta = !otwarta;
+
+      // Dźwięk
+      sound.currentTime = 0;
+      sound.play();
+    });
+  </script>
+</body>
+</html>
